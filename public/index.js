@@ -169,3 +169,68 @@ console.log(cars);
 console.log(rentals);
 console.log(actors);
 console.log(rentalModifications);
+
+
+function dateToDays(d1,d2)
+{
+	 var date1 = new Date(d1);
+	 var date2 = new Date(d2);
+	 
+	 return result = 1+(date2-date1)/86400000;
+}
+
+//TabRentals est le nom qu'on donne à notre tableau rentals
+//TabCars est le nom que l'on donne à notre tableau cars
+//On crée une nouvelle fonction prenant en attribut rentals et cars 
+function dateToDays(d1,d2)
+{
+	 var date1 = new Date(d1);
+	 var date2 = new Date(d2);
+	 
+	 return result = 1+(date2-date1)/86400000;
+}
+
+function rentPrice(tabRentals, tabCars)
+{
+	for(var i=0; i<tabRentals.length; i++)
+	{
+		var idCar = tabRentals[i].carId;
+		var dist = tabRentals[i].distance;	
+		var time = dateToDays(tabRentals[i].pickupDate, tabRentals[i].returnDate);
+		
+		for(var j=0; j<tabCars.length; j++)
+		{
+			if (idCar == tabCars[j].id)
+			{
+				priceKm = dist*tabCars[j].pricePerKm;
+				
+				var priceTime = 0;
+				for(var k=1; k<=time; k++)
+				{
+					if(k==1)
+					{
+						priceTime += tabCars[j].pricePerDay;
+					}
+					if(1<k && k<5)
+					{
+						priceTime += 0.9*(tabCars[j].pricePerDay);
+					}
+					if(4<k && k<11)
+					{
+						priceTime += 0.7*(tabCars[j].pricePerDay);
+
+					}
+					if(k>10)
+					{
+						priceTime += 0.5*(tabCars[j].pricePerDay);
+					}
+				}
+			}
+		var price = priceKm + priceTime;
+		}
+		tabRentals[i].price = price;
+	}
+}
+
+rentPrice(rentals, cars);
+console.log(rentals);
