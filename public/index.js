@@ -165,11 +165,6 @@ var rentalModifications = [{
   'pickupDate': '2015-12-05'
 }];
 
-console.log(cars);
-console.log(rentals);
-console.log(actors);
-console.log(rentalModifications);
-
 
 function dateToDays(d1,d2)
 {
@@ -182,14 +177,6 @@ function dateToDays(d1,d2)
 //TabRentals est le nom qu'on donne à notre tableau rentals
 //TabCars est le nom que l'on donne à notre tableau cars
 //On crée une nouvelle fonction prenant en attribut rentals et cars 
-function dateToDays(d1,d2)
-{
-	 var date1 = new Date(d1);
-	 var date2 = new Date(d2);
-	 
-	 return result = 1+(date2-date1)/86400000;
-}
-
 function rentPrice(tabRentals, tabCars)
 {
 	for(var i=0; i<tabRentals.length; i++)
@@ -227,10 +214,24 @@ function rentPrice(tabRentals, tabCars)
 				}
 			}
 		var price = priceKm + priceTime;
+		var commission = 0.3*price;
+		var insurance = 0.5*commission;
+		var assistance = time*1;
+		var drivy = commission - insurance - assistance;
+		console.log()
 		}
 		tabRentals[i].price = price;
+		tabRentals[i].commission.insurance = insurance;
+		tabRentals[i].commission.assistance = assistance;
+		tabRentals[i].commission.drivy = drivy;
+		
 	}
 }
 
+
+
 rentPrice(rentals, cars);
 console.log(rentals);
+console.log(cars);
+console.log(actors);
+console.log(rentalModifications);
