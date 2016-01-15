@@ -177,6 +177,7 @@ function dateToDays(d1,d2)
 //TabRentals est le nom qu'on donne à notre tableau rentals
 //TabCars est le nom que l'on donne à notre tableau cars
 //On crée une nouvelle fonction prenant en attribut rentals et cars 
+
 function rentPrice(tabRentals, tabCars)
 {
 	for(var i=0; i<tabRentals.length; i++)
@@ -212,12 +213,18 @@ function rentPrice(tabRentals, tabCars)
 						priceTime += 0.5*(tabCars[j].pricePerDay);
 					}
 				}
+				
+				var deductibleReductionPrice = 0;
+				if(tabRentals[i].options.deductibleReduction == true)
+				{
+					deductibleReductionPrice = 4*time;
+				}
 			}
-		var price = priceKm + priceTime;
-		var commission = 0.3*price;
+		var price = priceKm + priceTime + deductibleReductionPrice;
+		var commission = 0.3*(price-deductibleReductionPrice);
 		var insurance = 0.5*commission;
 		var assistance = time*1;
-		var drivy = commission - insurance - assistance;
+		var drivy = commission - insurance - assistance + deductibleReductionPrice;
 		console.log()
 		}
 		tabRentals[i].price = price;
