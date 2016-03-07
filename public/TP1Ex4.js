@@ -166,18 +166,15 @@ var rentalModifications = [{
 }];
 
 
+//functions to compute price
 function dateToDays(d1,d2)
 {
-	
 	 var date1 = new Date(d1);
 	 var date2 = new Date(d2);
 	 
-	 return 1+(date2-date1)/86400000;
+	 return result = 1+(date2-date1)/86400000;
 }
 
-//TabRentals est le nom qu'on donne à notre tableau rentals
-//TabCars est le nom que l'on donne à notre tableau cars
-//On crée une nouvelle fonction prenant en attribut rentals et cars 
 
 function rentPrice(tabRentals, tabCars)
 {
@@ -191,7 +188,7 @@ function rentPrice(tabRentals, tabCars)
 		{
 			if (idCar == tabCars[j].id)
 			{
-				var priceKm = dist*tabCars[j].pricePerKm;
+				priceKm = dist*tabCars[j].pricePerKm;
 				
 				var priceTime = 0;
 				for(var k=1; k<=time; k++)
